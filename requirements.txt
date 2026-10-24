@@ -1,0 +1,7 @@
+numpy
+pandas
+scipy>=1.15
+matplotlib
+tabulate
+jupyter
+nbformat
