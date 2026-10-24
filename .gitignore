@@ -1,5 +1,6 @@
 __pycache__/
 .ipynb_checkpoints/
-IMDB Dataset.csv
+.pytest_cache/
+data/IMDB Dataset.csv
 *.aux
 *.log
