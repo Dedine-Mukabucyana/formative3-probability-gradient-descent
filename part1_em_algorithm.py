@@ -343,3 +343,93 @@ print(
     "The two components are statistical groups; they are not "
     "automatically labels for mothers and children."
 )
+
+# ------------------------------------------------------------
+# 10. EVALUATE EM COMPONENTS AGAINST THE KNOWN GROUP LABELS
+# ------------------------------------------------------------
+
+print("\n" + "=" * 60)
+print("MOTHER VS CHILD CLASSIFICATION EVALUATION")
+print("=" * 60)
+
+# The heights array was created with mothers first and children second.
+actual_labels = np.concatenate([
+    np.zeros(len(mothers), dtype=int),  # 0 = Mother
+    np.ones(len(children), dtype=int),   # 1 = Child
+])
+
+# Get the most likely component for every observation.
+all_responsibilities = expectation_step(
+    heights, means, variances, proportions
+)
+predicted_components = np.argmax(all_responsibilities, axis=1)
+
+# EM component numbers do not automatically mean Mother or Child.
+# Test both possible mappings and select the one with more correct labels.
+correct_if_component_1_is_mother = np.sum(
+    (predicted_components == 0) == (actual_labels == 0)
+)
+
+correct_if_component_2_is_mother = np.sum(
+    (predicted_components == 1) == (actual_labels == 0)
+)
+
+if correct_if_component_1_is_mother >= correct_if_component_2_is_mother:
+    # Component 1 = Mother; Component 2 = Child
+    predicted_labels = predicted_components.copy()
+    mapping = "Component 1 = Mother; Component 2 = Child"
+else:
+    # Component 2 = Mother; Component 1 = Child
+    predicted_labels = 1 - predicted_components
+    mapping = "Component 2 = Mother; Component 1 = Child"
+
+# Calculate the confusion matrix.
+# Rows = actual labels; columns = predicted labels.
+# Label 0 = Mother, Label 1 = Child.
+confusion_matrix = np.zeros((2, 2), dtype=int)
+
+for actual, predicted in zip(actual_labels, predicted_labels):
+    confusion_matrix[actual, predicted] += 1
+
+true_mothers = confusion_matrix[0, 0]
+mothers_predicted_as_children = confusion_matrix[0, 1]
+children_predicted_as_mothers = confusion_matrix[1, 0]
+true_children = confusion_matrix[1, 1]
+
+accuracy = np.mean(actual_labels == predicted_labels)
+
+print("Selected component mapping:", mapping)
+print("\nConfusion matrix:")
+print("Rows = actual group; columns = predicted group")
+print("                    Predicted Mother  Predicted Child")
+print(
+    f"Actual Mother       {true_mothers:16d}"
+    f"  {mothers_predicted_as_children:14d}"
+)
+print(
+    f"Actual Child        {children_predicted_as_mothers:16d}"
+    f"  {true_children:14d}"
+)
+
+print(f"\nCorrect predictions: {np.sum(actual_labels == predicted_labels)}")
+print(f"Total observations: {len(actual_labels)}")
+print(f"Classification accuracy: {accuracy * 100:.2f}%")
+
+print("\nINTERPRETATION")
+print(
+    "The confusion matrix shows how many mothers and children "
+    "were assigned to each predicted group."
+)
+print(
+    "Accuracy is the percentage of all observations assigned "
+    "to the correct group after choosing the better component mapping."
+)
+print(
+    "This is an evaluation on the same observations used to fit EM, "
+    "not a test of performance on new data."
+)
+print(
+    "Because mother and child heights overlap and the children may "
+    "be of different ages, height alone may not separate the groups well."
+)
+ 
