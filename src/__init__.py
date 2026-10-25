@@ -1,1 +1,1 @@
-"""Formative 3 - Probability Distributions, Bayesian Probability and Gradient Descent."""
+"""Formative 3 - reusable modules (one responsibility per file)."""
