@@ -8,7 +8,7 @@ Mathematics for Machine Learning, African Leadership University. Group 11.
 | Dedine Mukabucyana | Part 2: Bayesian probability | `src/bayes.py` |
 | Cedric Bigwi Hindura | Parts 3 and 4: gradient descent | `src/gradient_descent.py`, `src/plotting.py` |
 
-All members present every part. See `docs/CONTRIBUTIONS.md`.
+All members present every part. Task allocation and progress: [team task sheet](https://docs.google.com/spreadsheets/d/1gFr1tJZjkSzbWvr7WduxqMADlThlRGwpbAgeI_G8vWY/edit?gid=0#gid=0) (an exported PDF copy is in `docs/`).
 
 ## Run it
 
@@ -34,7 +34,7 @@ src/
 tests/                          unit tests for EM, Bayes and gradient descent
 data/                           GaltonFamilies.csv and download notes for the IMDb file
 figures/                        plots produced by the notebook
-docs/                           handwritten Part 3 PDF and contribution proof
+docs/                           handwritten Part 3 calculations and the team task sheet (see docs/README.md)
 ```
 
 ## Part 1: EM on a two-Gaussian mixture (mothers vs children, Galton)
@@ -51,7 +51,7 @@ P(Positive | keyword) only. Positive keywords: excellent, wonderful, amazing, gr
 
 ## Part 3: Gradient descent by hand
 
-Model y_hat = Xm + b with the given X, y, m0 = [-1, 2], b0 = [1, 1], MSE cost, learning rate 0.01 (stated assumption), b as a 2-vector. Three updates, one per member. The notebook derives both gradients with the chain rule and prints an answer key for the handwritten sheet in `docs/Part3_Manual_Calculations.pdf`.
+Model y_hat = Xm + b with the given X, y, m0 = [-1, 2], b0 = [1, 1], MSE cost, learning rate 0.01 (stated assumption), b as a 2-vector. Three updates, one per member. The notebook derives both gradients with the chain rule and prints an answer key for the handwritten sheet in `docs/Part3_Manual_Calculations.pdf` (Update 1 by Milliam, Update 2 by Dedine, Update 3 by Cedric).
 
 | Update | y_hat | J | dJ/dm | new m | new b |
 |---|---|---|---|---|---|
