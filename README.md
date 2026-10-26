@@ -24,7 +24,7 @@ python -m pytest -q                                  # 11 tests
 ## Repository layout
 
 ```
-Formative3_Presentation.ipynb   the one notebook (all four parts, tables, plots, Q&A prep)
+Formative3_Presentation.ipynb   the one notebook (Parts 1, 2 and 4 with tables and plots; Part 3 points to the PDF in docs/)
 src/
   data.py                       load the Galton heights (mother or father vs children)
   em.py                         EM for a two-Gaussian mixture, tracking table, evaluation
@@ -51,7 +51,7 @@ P(Positive | keyword) only. Positive keywords: excellent, wonderful, amazing, gr
 
 ## Part 3: Gradient descent by hand
 
-Model y_hat = Xm + b with the given X, y, m0 = [-1, 2], b0 = [1, 1], MSE cost, learning rate 0.01 (stated assumption), b as a 2-vector. Three updates, one per member. The notebook derives both gradients with the chain rule and prints an answer key for the handwritten sheet in `docs/Part3_Manual_Calculations.pdf` (Update 1 by Milliam, Update 2 by Dedine, Update 3 by Cedric).
+Model y_hat = Xm + b with the given X, y, m0 = [-1, 2], b0 = [1, 1], MSE cost, learning rate 0.01 (stated assumption), b as a 2-vector. Three updates, one per member. The handwritten derivation (chain rule for both gradients), the three updates (Update 1 by Milliam, Update 2 by Dedine, Update 3 by Cedric) and the trend are in `docs/Part3_Manual_Calculations.pdf`; the table below has the same numbers, and Part 4 of the notebook reproduces them in code.
 
 | Update | y_hat | J | dJ/dm | new m | new b |
 |---|---|---|---|---|---|
@@ -62,3 +62,9 @@ Model y_hat = Xm + b with the given X, y, m0 = [-1, 2], b0 = [1, 1], MSE cost, l
 ## Part 4: Gradient descent with SciPy
 
 `gd.partial_derivative` differentiates any equation of a parameter vector with `scipy.differentiate.derivative` (SciPy 1.15 or newer) and is checked against the analytic gradient. The notebook shows every step of the update loop and plots m, b and the MSE per iteration.
+
+## Live demo: classify a height given by the coach
+
+1. Open `Formative3_Presentation.ipynb` and run all cells once (Restart and Run All) so the EM model is fitted.
+2. In the cell under **Classify a test height**, change `TEST_HEIGHT = 68.0` to the height given, then re-run only that cell.
+3. It prints the exact posterior probability that the height belongs to a child and to a mother (the two add up to 1) and marks the height on the fitted mixture. To repeat with fathers, set `PARENT = "father"` in the Part 1 data cell and run all cells again.
