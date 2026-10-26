@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-﻿__pycache__/
-*.py[cod]
-.venv/
-venv/
-=======
 __pycache__/
 .ipynb_checkpoints/
 .pytest_cache/
 data/IMDB Dataset.csv
 *.aux
 *.log
->>>>>>> origin/main
