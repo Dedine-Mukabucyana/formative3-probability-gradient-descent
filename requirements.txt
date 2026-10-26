@@ -1,3 +1,13 @@
+<<<<<<< HEAD
 ﻿numpy
 pandas
 matplotlib
+=======
+numpy
+pandas
+scipy>=1.15
+matplotlib
+jupyter
+nbformat
+pytest
+>>>>>>> origin/main
